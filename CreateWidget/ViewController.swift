@@ -9,11 +9,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var txtText: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        storeData(text: "メモを入力しよう")
     }
 
-
+    @IBAction func btnStoreText(_ sender: Any) {
+        storeData(text: txtText.text ?? "--")
+    }
+    
+    func storeData(text : String) {
+        let storedata = StoreData(showText: text)
+        let primaryData = PrimaryData(storeData: storedata)
+        primaryData.encodeData()
+    }
 }
 
